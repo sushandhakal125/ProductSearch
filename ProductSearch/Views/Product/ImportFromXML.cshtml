@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "ImportFromXML";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 align="center" style="color:#0F0455"><b>Import From XML File</b></h3>
+                        @using (Html.BeginForm("UploadData", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <label>File: </label>
+                                </div>
+                                <div class="col-sm-1">
+                                    <input type="file" name="Files" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input type="submit" class="btn btn-fill pull-right" style="background-color:#0F0455;" name="submit" value="Upload" />
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

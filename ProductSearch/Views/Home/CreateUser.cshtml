@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "CreateUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 align="center" style="color:#0F0455"><b>Create New User</b></h3>
+                        <form method="post" action="@Url.Action("AddUserToDB", "Home")">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-md-2">Name</label>
+                                    <input type="text" class="form-control" name="name" />
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-md-2">Code</label>
+                                    <input type="text" class="form-control" name="code">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label class="col-md-2">Allow To Edit?</label>
+                                        <label>
+                                            <input type="checkbox" id="allowtoedit" name="allowtoedit" value="True">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Create" id="createButton" class="pull-right btn btn-fill" style="background-color:#0F0455">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

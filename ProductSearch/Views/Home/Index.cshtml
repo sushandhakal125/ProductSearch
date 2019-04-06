@@ -1,0 +1,271 @@
+﻿@model IEnumerable<ProductSearch.Models.Product>
+@using ProductSearch.Models;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Products</title>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+
+</head>
+
+<body>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title" align="center">Search Products</h3>
+                            <form id="searchForm">
+                                <h4>By</h4>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label for="particlesize" class="control-label">Particle Size</label>
+                                            <input type="text" class="form-control" id="particlesize" name="particlesize" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label for="ironcontent" class="control-label">Iron Content(%)</label>
+                                            <input type="text" class="form-control" id="ironcontent" name="ironcontent">
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label for="reactivity" class="control-label">Reactivity</label>
+                                            <input type="text" class="form-control" id="reactivity" name="reactivitiy">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4>Particle Size Range Applied</h4>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label for="ParticleSizeMin" class="control-label">Particle size from</label>
+                                            <input type="text" class="form-control" id="particlesizemin" name="ParticleSizeMin">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating">
+                                            <label for="ParticleSizeMax" class="control-label">Particle size to</label>
+                                            <input type="text" class="form-control" id="particlesizemax" name="ParticleSizeMax">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="submit" value="Search" id="searchButton" class="btn" style="background-color:#0F0455">
+                                        <input type="button" value="Reset" id="resetButton" class="btn" style="background-color:#0F0455">
+                                        <input type="button" value="Mix Search" id="mixSearchButton" class="btn" style="background-color:#0F0455">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group" id="checkBoxesForm">
+                                        <label class="label-on-left" style="color:#0F0455"><b>Iron Content(%)</b></label>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="checkbox1" name="ironcontentcheckbox" value="1-50" /> 1-50
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="checkbox2" name="ironcontentcheckbox" value="51-60" /> 51-60
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="checkbox3" name="ironcontentcheckbox" value="61-70" /> 61-70
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="checkbox4" name="ironcontentcheckbox" value="71-80" /> 71-80
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="checkbox5" name="ironcontentcheckbox" value="81-90" /> 81-90
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="checkbox6" name="ironcontentcheckbox" value="91-100" /> 91-100
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-10">
+                                    <h4 align="center" style="color:#0F0455"><b>Products List</b></h4>
+                                    <div class="material-datatables">
+                                        <table id="tableId" class="table table-bordered table-hover" cellspacing="0" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th id="idOrRecordId">Record Id</th>
+                                                    <th>Particle Size (Micron)</th>
+                                                    <th>Iron Content (%)</th>
+                                                    <th>Reactivity (mL/d)</th>
+                                                    <th>Price ($)</th>
+                                                    <th>Surface Area (m2/g)</th>
+                                                    <th>Longevity (Years)</th>
+                                                    <th>Media</th>
+                                                    <th>Location</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (Product product in Model)
+                                                {
+                                                    <tr>
+                                                        <td>@product.RecordId</td>
+                                                        <td>@product.ParticleSize</td>
+                                                        <td>@product.IronContent</td>
+                                                        <td>@product.Reactivitiy</td>
+                                                        <td>@product.Price</td>
+                                                        <td>@product.SurfaceArea</td>
+                                                        <td>@product.Logevity</td>
+                                                        <td>@product.Media</td>
+                                                        <td>@product.Location</td>
+                                                    </tr>
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>
+<script type="text/javascript">
+    $("#searchForm").submit(function () {
+        callAdvanceSearchController();
+        return false;
+    });
+    $('#resetButton').click(function () {
+        $('#particlesize').val("");
+        $('#particlesize').parent().addClass('is-empty');
+        $('#reactivity').val("");
+        $('#reactivity').parent().addClass('is-empty');
+        $('#ironcontent').val("");
+        $('#ironcontent').parent().addClass('is-empty');
+        $('#particlesizemin').val("");
+        $('#particlesizemin').parent().addClass('is-empty');
+        $('#particlesizemax').val("");
+        $('#particlesizemax').parent().addClass('is-empty');
+
+    });
+    $('#mixSearchButton').click(function () {
+        $('#tableId th#idOrRecordId').text('Id');
+        $('#tableId tbody').remove();
+        $.ajax({
+            url: '/Product/MixSearch',
+            data: {
+                ironcontent: $('#ironcontent').val()
+            },
+            dataType: 'json',
+            method: 'post',
+            success: function (data) {
+                $(data).each(function (index, value) {
+                    $('#tableId').append("<tbody><tr><td>" + value.Id + "</td><td>" + value.ParticleSize + "</td><td>" + value.IronContent + "</td><td>" + value.Reactivitiy + "</td><td>" + value.Price + "</td><td>" + value.SurfaceArea + "</td><td>" + value.Logevity + "</td><td>" + value.Media + "</td><td>" + value.Location + "</td></tr></tbody>");
+                });
+            }
+        });
+
+    });
+    $("#checkbox1").change(function () {
+        if (this.checked) {
+            callAdvanceSearchController();
+        }
+        else
+            callAdvanceSearchController();
+    });
+    $("#checkbox2").change(function () {
+        if (this.checked) {
+            callAdvanceSearchController();
+        }
+        else
+            callAdvanceSearchController();
+    });
+    $("#checkbox3").change(function () {
+        if (this.checked) {
+            callAdvanceSearchController();
+        }
+        else
+            callAdvanceSearchController();
+    });
+    $("#checkbox4").change(function () {
+        if (this.checked) {
+            callAdvanceSearchController();
+        }
+        else
+            callAdvanceSearchController();
+    });
+    $("#checkbox5").change(function () {
+        if (this.checked) {
+            callAdvanceSearchController();
+        }
+        else
+            callAdvanceSearchController();
+    });
+    $("#checkbox6").change(function () {
+        if (this.checked) {
+            callAdvanceSearchController();
+        }
+        else
+            callAdvanceSearchController();
+    });
+    function callAdvanceSearchController() {
+        $('#tableId th#idOrRecordId').text('Record Id');
+        var checkedIronContent =
+            $('input:checkbox[name="ironcontentcheckbox"]:checked')
+                .map(function () {
+                    return $(this).val();
+                }).get();
+        $('#tableId tbody').remove();
+        $.ajax({
+            url: '/Product/AdvanceSearch',
+            data: {
+                ironcontentmargins: checkedIronContent,
+                particlesize: $('#particlesize').val(),
+                ironcontent: $('#ironcontent').val(),
+                reactivity: $('#reactivity').val(),
+                particlesizemin: $('#particlesizemin').val(),
+                particlesizemax: $('#particlesizemax').val()
+            },
+            dataType: 'json',
+            method: 'post',
+            success: function (data) {
+                renderTable(data);
+            }
+        });
+    }
+
+    function renderTable(data) {
+        $(data).each(function (index, value) {
+            $('#tableId').append("<tbody><tr><td>" + value.RecordId + "</td><td>" + value.ParticleSize + "</td><td>" + value.IronContent + "</td><td>" + value.Reactivitiy + "</td><td>" + value.Price + "</td><td>" + value.SurfaceArea + "</td><td>" + value.Logevity + "</td><td>" + value.Media + "</td><td>" + value.Location + "</td></tr></tbody>");
+        });
+    }
+
+
+</script>
+
+

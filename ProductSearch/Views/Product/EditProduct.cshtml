@@ -1,0 +1,116 @@
+﻿@model ProductSearch.Models.Product
+
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 align="center" style="color:#0F0455"><b>Edit Product</b></h3>
+
+                        @using (Html.BeginForm("SaveProduct", "Product", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.RecordId)
+
+                                <div class="form-group">
+                                    <label class="col-md-2">Product Name</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2">Particle Size</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ParticleSize, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ParticleSize, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2">Iron Content(%)</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.IronContent, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.IronContent, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Reactivitiy, htmlAttributes: new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Reactivitiy, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Reactivitiy, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2">Price</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2">Surface Area</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.SurfaceArea, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.SurfaceArea, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2">Longevity</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Logevity, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Logevity, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Media, htmlAttributes: new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Media, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Media, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Save Product" class="btn btn-fill" style="background-color:#0F0455" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

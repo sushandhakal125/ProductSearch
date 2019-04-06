@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ProductSearch.Models.Product>
+@using ProductSearch.Models;
+@{
+    ViewBag.Title = "ProductsList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 align="center" style="color:#0F0455"><b>Manage Products</b></h3>
+                        @Html.ActionLink("Create New", "AddNewProduct", null, new { @class = "btn btn-fill pull-right btn-sm", @style = "background-color:#0F0455;" })
+                        <div class="material-datatables">
+                            <table id="tableId" class="table table-bordered table-hover" cellspacing="0" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="color:#0F0455">Record Id</th>
+                                        <th style="color:#0F0455">Particle Size (Micron)</th>
+                                        <th style="color:#0F0455">Iron Content (%)</th>
+                                        <th style="color:#0F0455">Reactivity (mL/d)</th>
+                                        <th style="color:#0F0455">Price ($)</th>
+                                        <th style="color:#0F0455">Surface Area (m2/g)</th>
+                                        <th style="color:#0F0455">Longevity (Years)</th>
+                                        <th style="color:#0F0455">Media</th>
+                                        <th style="color:#0F0455">Location</th>
+                                        <th style="color:#0F0455">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Product product in Model)
+                                    {
+                                        <tr>
+                                            <td>@product.RecordId</td>
+                                            <td>@product.ParticleSize</td>
+                                            <td>@product.IronContent</td>
+                                            <td>@product.Reactivitiy</td>
+                                            <td>@product.Price</td>
+                                            <td>@product.SurfaceArea</td>
+                                            <td>@product.Logevity</td>
+                                            <td>@product.Media</td>
+                                            <td>@product.Location</td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "EditProduct", new { Id = product.RecordId }, new { @class = "btn btn-fill btn-xs", @style = "background-color:#0F0455" })
+                                                @Html.ActionLink("Delete", "DeleteProduct", new { Id = product.RecordId }, new { @class = "btn btn-fill btn-xs", @style = "background-color:#0F0455" })
+                                            </td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿@model ProductSearch.Models.User
+
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 align="center" style="color:#0F0455"><b>Edit User</b></h3>
+                        @using (Html.BeginForm("SaveUser", "Home", new { Id = Model.Id, Name = Model.Name, Code = Model.code, AllowToEdit = Model.AllowToEdit }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-md-2">Name</label>
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2">Code</label>
+                                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label class="col-md-2">Allow To Edit?</label>
+                                        <label>
+                                            @Html.EditorFor(model => model.AllowToEdit, new { @type = "checkbox" })
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-fill pull-right" style="background-color:#0F0455">
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
