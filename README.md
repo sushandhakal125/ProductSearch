@@ -34,7 +34,7 @@ A product browsing and search application built with **ASP.NET** and **Material 
 
 Press F5 or run the solution to launch in your browser
 
-##📂 Folder Structure
+## 📂 Folder Structure
   - /Controllers - Logic for handling requests
 
   - /Models - Data models for products
@@ -45,9 +45,9 @@ Press F5 or run the solution to launch in your browser
 
   - /Content - CSS and design assets
 
-##📸 Screenshots
+## 📸 Screenshots
 Coming soon...
 
-##📄 License
+## 📄 License
 This project is for educational/demo purposes. Feel free to fork or build upon it.
 
