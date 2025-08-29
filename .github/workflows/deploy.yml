@@ -1,0 +1,45 @@
+name: Build and Deploy to Azure App Service (ASP.NET Framework)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore ProductSearch.sln
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      # If your web project path/name differs, point to it explicitly in the next step.
+      - name: Build solution (Release)
+        run: msbuild ProductSearch.sln /p:Configuration=Release
+
+      - name: Publish web project to package
+        run: |
+          for /r %%f in (*.csproj) do (
+            if exist "%%f" (
+              echo Publishing %%f
+              msbuild "%%f" /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="${{ github.workspace }}\\published\\"
+              goto :done
+            )
+          )
+          :done
+
+      - name: Deploy to Azure WebApp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: productsearch-sushan      # <-- your App Service name from Step 2
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ${{ github.workspace }}\published
