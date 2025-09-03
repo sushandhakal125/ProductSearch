@@ -1,4 +1,4 @@
-# 🛍️ ProductSearch App
+# 🛍️ ProductSearch App 
 
 A product browsing and search application built with **ASP.NET** and **Material Design** principles. This app allows users to seamlessly browse, search, and import product listings from XML files into a connected database.
 
